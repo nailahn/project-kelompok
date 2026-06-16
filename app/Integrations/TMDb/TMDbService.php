@@ -94,11 +94,18 @@ class TMDbService
      * @return array
      */
     public function getMovieDetail(int $movieId): array
-    {
-        return $this->makeRequest("/movie/{$movieId}", [
-            'append_to_response' => 'credits,keywords',
-        ]);
-    }
+{
+    return $this->makeRequest("/movie/{$movieId}", [
+        'append_to_response'     => 'credits,images,recommendations',
+        'include_image_language' => 'en,null', 
+    ]);
+}
+    // public function getMovieDetail(int $movieId): array
+    // {
+    //     return $this->makeRequest("/movie/{$movieId}", [
+    //         'append_to_response' => 'credits,keywords',
+    //     ]);
+    // }
 
     /**
      * Ambil video/trailer film dari TMDb
@@ -141,6 +148,24 @@ class TMDbService
     {
         if (!$posterPath) return null;
         return $this->imageBaseUrl . $posterPath;
+    }
+
+    // app/Integrations/TMDb/TMDbService.php
+    // Tambahkan method baru di dalam class TMDbService:
+    /**
+     * Ambil detail lengkap film TERMASUK gambar dan penyedia streaming
+     *
+     * Endpoint: GET /movie/{id}?append_to_response=credits,images,watch/providers
+     *
+     * @param int $movieId
+     * @return array
+     */
+    public function getMovieFullDetail(int $movieId): array
+    {
+        return $this->makeRequest("/movie/{$movieId}", [
+            'append_to_response' => 'credits,images,watch/providers',
+            'language'           => 'en-US',
+        ]);
     }
 
     /**

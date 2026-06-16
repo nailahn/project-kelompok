@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\GenreController;
@@ -39,8 +40,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/me',      [AuthController::class, 'me']);
 
+
     // Rekomendasi Film
     Route::get('/recommendations', [RecommendationController::class, 'recommend']);
+
+    Route::get('/movies/{id}', [MovieController::class, 'show']);
 
     // Favorit
     Route::prefix('favorites')->group(function () {

@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-olive-800 text-white font-sans antialiased;
+    background-color: #3B4231;
+    /* Texture grain halus di seluruh halaman */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  /* Komponen tombol utama */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-olive-800 font-sans font-semibold text-sm tracking-wide transition-all duration-200 hover:bg-cinema-cream hover:shadow-lg hover:shadow-black/30 active:scale-95;
+  }
+
+  /* Komponen tombol outline */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 text-white font-sans font-medium text-sm tracking-wide transition-all duration-200 hover:border-white/60 hover:bg-white/10 active:scale-95;
+  }
+
+  /* Badge rating sinematik */
+  .rating-badge {
+    @apply flex items-center justify-center w-14 h-14 rounded-full border-2 border-cinema-gold/60 bg-black/30 backdrop-blur-sm;
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply rounded bg-gradient-to-r from-olive-700 via-olive-600 to-olive-700;
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite;
+  }
+}
+
+/* Scrollbar sinematik */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #2C3020;
+}
+::-webkit-scrollbar-thumb {
+  background: #5A6449;
+  border-radius: 2px;
+}
+
+/* Transisi halaman */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+select option {
+    background-color: #2C3020;
+    color: white;
+}
